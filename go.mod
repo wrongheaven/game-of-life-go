@@ -5,7 +5,6 @@ go 1.22.2
 require github.com/hajimehoshi/ebiten v1.12.12
 
 require (
-	github.com/Kodeworks/golang-image-ico v0.0.0-20141118225523-73f0f4cfade9 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200707082815-5321531c36a2 // indirect
 	golang.org/x/exp v0.0.0-20190731235908-ec7cb31e5a56 // indirect
 	golang.org/x/image v0.0.0-20200801110659-972c09e46d76 // indirect
