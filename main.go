@@ -8,16 +8,16 @@ import (
 	_ "embed"
 	"image/png"
 
-	eb "github.com/hajimehoshi/ebiten"
+	"github.com/hajimehoshi/ebiten"
 )
 
 //go:embed assets/icon.png
 var iconData []byte
 
 const (
-	WIDTH        = 1280
-	HEIGHT       = 720
-	FPS          = 10
+	WIDTH        = 600
+	HEIGHT       = 600
+	FPS          = 30
 	WINDOW_TITLE = "hello mother"
 )
 
@@ -27,13 +27,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	eb.SetWindowIcon([]image.Image{iconImage})
+	ebiten.SetWindowIcon([]image.Image{iconImage})
 
-	eb.SetWindowSize(WIDTH, HEIGHT)
-	eb.SetWindowTitle(WINDOW_TITLE)
-	eb.SetMaxTPS(FPS)
+	ebiten.SetWindowPosition(2500, 200)
+	ebiten.SetWindowSize(WIDTH, HEIGHT)
+	ebiten.SetWindowTitle(WINDOW_TITLE)
+	ebiten.SetMaxTPS(FPS)
 
-	if err := eb.RunGame(&Game{}); err != nil {
+	if err := ebiten.RunGame(&Game{}); err != nil {
 		log.Fatal(err)
 	}
 }
