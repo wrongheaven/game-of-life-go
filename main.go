@@ -9,17 +9,14 @@ import (
 	"image/png"
 
 	"github.com/hajimehoshi/ebiten"
+	"github.com/wrongheaven/game-of-life-go/consts"
+	"github.com/wrongheaven/game-of-life-go/gui"
 )
 
 //go:embed assets/icon.png
 var iconData []byte
 
-const (
-	WIDTH        = 600
-	HEIGHT       = 600
-	FPS          = 30
-	WINDOW_TITLE = "hello mother"
-)
+var grid gui.Grid
 
 func main() {
 	iconImage, err := png.Decode(bytes.NewReader(iconData))
@@ -28,11 +25,16 @@ func main() {
 	}
 
 	ebiten.SetWindowIcon([]image.Image{iconImage})
-
 	ebiten.SetWindowPosition(2500, 200)
-	ebiten.SetWindowSize(WIDTH, HEIGHT)
-	ebiten.SetWindowTitle(WINDOW_TITLE)
-	ebiten.SetMaxTPS(FPS)
+	ebiten.SetWindowSize(consts.WIDTH, consts.HEIGHT)
+	ebiten.SetWindowTitle(consts.WINDOW_TITLE)
+	ebiten.SetMaxTPS(consts.FPS)
+
+	for row := range consts.CELL_ROWS {
+		for col := range consts.CELL_COLS {
+			grid.AddCell(col, row)
+		}
+	}
 
 	if err := ebiten.RunGame(&Game{}); err != nil {
 		log.Fatal(err)
